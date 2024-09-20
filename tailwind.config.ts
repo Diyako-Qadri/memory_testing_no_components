@@ -15,6 +15,16 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [function({ addUtilities }:any) {
+    addUtilities({
+      '.backface-visible': {
+        'backface-visibility': 'visible',
+      },
+      '.backface-hidden': {
+        'backface-visibility': 'hidden',
+      }
+    })}
+  ],
 };
+
 export default config;

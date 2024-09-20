@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor, act } from "@testing-library/react";
-import Home from "../app/page";
+import Home from "./page";
 
 beforeEach(() => {
     jest.useFakeTimers();
@@ -64,16 +64,19 @@ describe("Make sure card are acting as expected", () => {
         let visibleImages = screen.queryAllByTestId("card-image");
 
         for (let i = 1; i < cards.length; i++) {
+          
             fireEvent.click(cards[0]);
             fireEvent.click(cards[i]);
 
             await waitFor(() => {
                 visibleImages = screen.queryAllByTestId("card-image");
+               console.log(visibleImages[1])
                 if (visibleImages.length === 2) {
-
+                
                     const firstImage = visibleImages[0] as HTMLImageElement;
                     const secondImage = visibleImages[1] as HTMLImageElement;
-
+                    // console.log(secondImage.alt + i)
+                    // console.log(firstImage.src + "---" + secondImage.src + "---" + i)
                     if (firstImage.src === secondImage.src) {
                         matched = true;
                     }
@@ -106,8 +109,8 @@ describe("Make sure card are acting as expected", () => {
         
         if (firstImage.src !== secondImage.src) {
             await waitFor(() => {
-                visibleImages = screen.queryAllByTestId("card-image");
-                expect(visibleImages).toBe(0)
+                visibleImages = screen.queryAllByTestId("card-image");// The queryAllByTestId return an array
+                expect(visibleImages.length).toBe(0)// added length to check array length
             }, { timeout: 1500 })
         }
     })
@@ -127,7 +130,7 @@ describe("Make sure card are acting as expected", () => {
                     jest.advanceTimersByTime(1100);
                 });
 
-                const flippedCards = screen.getAllByTestId("card-image");
+                const flippedCards = screen.queryAllByTestId("card-image");// changed to queryAllBy.. becuse it dosent return an error even it's null
 
                 if (flippedCards.length === (i + 1) * 2) {
                     break; 
@@ -192,7 +195,7 @@ describe("Ensure that New Game button resets the game", () => {
 
                     const firstImage = visibleImages[0] as HTMLImageElement;
                     const secondImage = visibleImages[1] as HTMLImageElement;
-
+                    // console.log(firstImage.src + "---" + secondImage.src + "---" + i)
                     if (firstImage.src === secondImage.src) {
                         matched = true;
                     }
@@ -204,9 +207,9 @@ describe("Ensure that New Game button resets the game", () => {
             }
         }
 
-        visibleImages = screen.getAllByTestId("card-image");
-
-        expect(visibleImages.length).toBe(2)
+        visibleImages = screen.queryAllByTestId("card-image");
+      
+        expect(visibleImages.length).toBe(2)    
         expect(matched).toBe(true);
 
         fireEvent.click(newGameBtn)

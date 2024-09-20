@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.transform-style-preserve-3d {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  
+  /* .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  } */
+  
+  .perspective {
+    perspective: 1000px; 
+  }
+
+  .grid-container{
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+  }
