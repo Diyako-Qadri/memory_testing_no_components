@@ -86,7 +86,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="grid p-8 sm:p-20  grid-cols-4 gap-6 w-wull md:max-w-[700px] m-auto">
+      <div className="grid p-8 sm:p-20  grid-cols-4 gap-[12px] md:gap-6 w-wull md:max-w-[700px] m-auto">
         {cardImg.map((card, index) => (
           <div
             key={index}
@@ -113,14 +113,14 @@ export default function Home() {
         ))}
         <div className="col-span-4   flex border-[1px] py-6 border-red-500/40 justify-around bg-blue-200/40 p-4">
           <div className="flex flex-col text-center">
-            <span className="text-xl">Moves:</span>
+            <span className="text-base md:text-xl">Moves:</span>
             <span data-testid="moves" className="text-red-900 text-2xl">
               {moves}
             </span>
           </div>
           <NewGameBtn updateFunction={newGame} />
           <div className="flex flex-col text-center">
-            <span className="text-xl">Highscore:</span>
+            <span className="text-base md:text-xl">Highscore:</span>
             <div>
               <span
                 data-testid="highscore-name"
