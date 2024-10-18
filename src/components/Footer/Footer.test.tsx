@@ -18,6 +18,6 @@ describe("Ensure that footer renders correctly", () => {
 
     test("Check that copyright info renders the right text", () => {
         const copyright = screen.getByTestId("copyright")
-        expect(copyright).toHaveTextContent("© Darius Kaya")
+        expect(copyright).toHaveTextContent("© Diyako Qadri")
     })
 })
